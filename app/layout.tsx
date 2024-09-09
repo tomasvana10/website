@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Providers } from "./providers";
+import { ThemeProvider } from "next-themes";
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "tomasvana10 | Website",
@@ -17,10 +18,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
-        <Providers>
-          <Nav />
-          {children}
-        </Providers>
+        <ThemeProvider><Nav />{children}<Footer /></ThemeProvider>
       </body>
     </html>
   );
