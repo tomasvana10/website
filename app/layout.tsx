@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { NextUIProvider } from "@nextui-org/react";
-import { ThemeProvider } from "next-themes";
 import { Providers } from "./providers";
 import Nav from "./components/Nav";
 
