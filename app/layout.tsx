@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { ThemeProvider } from "next-themes";
+import { Providers } from "./providers";
+import Nav from "./components/Nav";
 
 export const metadata: Metadata = {
   title: "tomasvana10 | Website",
@@ -17,9 +19,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
-        <NextUIProvider>
-          <ThemeProvider attribute="class" defaultTheme="dark">{children}</ThemeProvider>
-        </NextUIProvider>
+        <Providers>
+          <Nav />
+          {children}
+        </Providers>
       </body>
     </html>
   );

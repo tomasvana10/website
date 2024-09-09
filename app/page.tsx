@@ -1,5 +1,13 @@
-import { ThemeSwitcher } from "./components/ThemeSwitcher";
+"use client";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export default function HomePage() {
-  return <ThemeSwitcher />
+export default function BasePage() {
+  const { push } = useRouter();
+
+  useEffect(() => {
+    push("/home");
+  }, [push]);
+
+  return <p></p>;
 }
