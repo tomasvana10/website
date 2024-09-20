@@ -10,7 +10,7 @@ export default function ThemeSwitcher() {
   useEffect(() => {
     setMounted(true);
     document.documentElement.classList.add(theme!);
-  }, []);
+  }, [theme]);
 
   if (!mounted) {
     return <span className="loading loading-spinner w-6 h-6 mr-4 pt-1 bg-current"></span>;
