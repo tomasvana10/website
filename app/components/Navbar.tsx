@@ -11,6 +11,7 @@ export default function Navbar() {
   const [scrolledToTop, setScrolledToTop] = useState(true);
 
   useEffect(() => {
+    window.scrollTo(0, 0); // if this isn't here, the default scroll position will be lower than the landing page
     let lastScrollY = window.scrollY;
 
     const updateScrollDirection = () => {
