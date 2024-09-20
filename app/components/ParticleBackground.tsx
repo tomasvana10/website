@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { Container, ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
+import { ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useTheme } from "next-themes";
 
-const ParticlesComponent = () => {
+const ParticleBackground = () => {
   const [init, setInit] = useState(false);
   const { theme } = useTheme();
 
@@ -22,7 +22,7 @@ const ParticlesComponent = () => {
     () => ({
       particles: {
         number: {
-          value: 50,
+          value: 80,
           density: {
             enable: true,
             value_area: 789.147632,
@@ -47,7 +47,7 @@ const ParticlesComponent = () => {
           anim: {
             enable: true,
             speed: 1,
-            opacity_min: 0,
+            opacity_min: 0.1,
             sync: false,
           },
         },
@@ -70,7 +70,7 @@ const ParticlesComponent = () => {
         },
         move: {
           enable: true,
-          speed: 0.1,
+          speed: 0.15,
           direction: MoveDirection.none,
           random: true,
           straight: false,
@@ -120,10 +120,14 @@ const ParticlesComponent = () => {
   );
 
   if (init) {
-    return <Particles id="tsparticles" options={options} />;
+    return (
+      <div className="absolute z-[-50]">
+        <Particles id="tsparticles" options={options} />
+      </div>
+    );
   }
 
   return <></>;
 };
 
-export default ParticlesComponent;
+export default ParticleBackground;

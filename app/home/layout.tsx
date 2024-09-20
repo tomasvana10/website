@@ -1,15 +1,17 @@
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
-import ParticlesComponent from "../components/Particles";
+import Navbar from "../components/Navbar";
+import ParticleBackground from "../components/ParticleBackground";
 import { ContentWrapper } from "../components/Wrappers";
 
 export default function HomeLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <section>
+    <main>
       <Banner />
-      <ParticlesComponent />
+      <ParticleBackground />
+      <Navbar />
       <ContentWrapper>{children}</ContentWrapper>
       <Footer />
-    </section>
+    </main>
   );
 }

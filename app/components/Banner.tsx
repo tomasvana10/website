@@ -10,14 +10,14 @@ export default function Banner() {
           {
             image: "/hubble.jpg",
             opacity: [1, 0],
-            translateY: [-10, 15],
+            translateY: [-10, 20],
             shouldAlwaysCompleteAnimation: true,
             easing: EasingPreset.easeInOut,
           },
           {
             speed: -10,
             translateY: [-10, 0],
-            scale: [1, 1.2],
+            scale: [1, 1],
             shouldAlwaysCompleteAnimation: true,
             easing: EasingPreset.easeInQuart,
             children: (

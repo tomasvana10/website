@@ -1,9 +1,31 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const metadata: Metadata = {
-  title: "tomasvana10 | Website",
+  title: "Tomas Vana - Website",
+  description: "My personal website, including things about me and my projects",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  authors: [
+    {
+      name: "Tomas Vana",
+    },
+  ],
+  creator: "tomasvana10",
+  keywords: [
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "Daisy UI",
+    "UI Framework",
+    "Personal Website",
+    "Resume",
+    "Developer Website",
+    "Developer",
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -14,6 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body>
+        <ScrollToTop />
         <Providers>{children}</Providers>
       </body>
     </html>

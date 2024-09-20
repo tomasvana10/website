@@ -1,10 +1,10 @@
 import Link from "next/link";
-import ThemeSwitcher from "./ThemeSwitcher";
+import { GithubIcon } from "./SVG";
 
 export default function Footer() {
   return (
-    <footer className="footer bg-base-300 text-base-content p-4 footer-center">
-      <div className="flex flex-row align-text-top gap-x-10 items-start">
+    <footer className="footer bg-zin-300 dark:bg-zinc-900 p-4 footer-center">
+      <div className="flex flex-row align-text-top gap-x-10">
         <aside>
           <p>
             View the source code of this website{" "}
@@ -16,14 +16,11 @@ export default function Footer() {
           </p>
           <p>{new Date().getFullYear()} - Tomas Vana </p>
         </aside>
-        <nav>
-          <h6 className="footer-title">Theme</h6>
-          <ThemeSwitcher />
-        </nav>
-        <nav>
-          <h6 className="footer-title">Links</h6>
-          <p>Test</p>
-        </nav>
+        <div className="grid grid-flow-col gap-4">
+          <Link target="_blank" href="https://github.com/tomasvana10">
+            <GithubIcon className="h-10 w-10 fill-current" />
+          </Link>
+        </div>
       </div>
     </footer>
   );

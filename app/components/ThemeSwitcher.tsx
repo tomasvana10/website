@@ -9,15 +9,24 @@ export default function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true);
+    document.documentElement.classList.add(theme!);
   }, []);
 
   if (!mounted) {
     return <span className="loading loading-spinner w-6 h-6 mr-4 pt-1 bg-current"></span>;
   }
 
+  const toggleTheme = () => {
+    const oldTheme = theme;
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    document.documentElement.classList.remove(oldTheme!);
+    document.documentElement.classList.add(newTheme);
+  };
+
   const handleThemeToggle = (event: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
     if ((event as KeyboardEvent<HTMLInputElement>).key === "Enter" || event.type === "change") {
-      setTheme(theme === "dark" ? "light" : "dark");
+      toggleTheme();
     }
   };
 
