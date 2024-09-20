@@ -3,7 +3,7 @@ import { GithubIcon } from "./SVG";
 
 export default function Footer() {
   return (
-    <footer className="footer bg-zin-300 dark:bg-zinc-900 p-4 footer-center">
+    <footer className="footer bg-zinc-300 dark:bg-zinc-900 p-4 footer-center">
       <div className="flex flex-row align-text-top gap-x-10">
         <aside>
           <p>

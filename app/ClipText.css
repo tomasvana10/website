@@ -26,6 +26,7 @@
   bottom: 0;
   left: 0;
   background-image: inherit;
+  border-radius: 25px;
 }
 
 .clip-text:after {
@@ -37,8 +38,5 @@
   left: 0.125em;
   background-color: #000;
   transition: border-radius 0.3s ease;
-}
-
-.clip-text:hover:after {
   border-radius: 25px;
 }

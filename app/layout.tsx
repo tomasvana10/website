@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "./providers";
 import ScrollToTop from "./components/ScrollToTop";
+import SkipToContent from "./components/SkipToContent";
+import MouseSpotlight from "./components/MouseSpotlight";
 
 export const metadata: Metadata = {
   title: "Tomas Vana - Website",
@@ -34,8 +36,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="stylesheet"
+          type="text/css"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+        />
       </head>
       <body>
+        <MouseSpotlight />
+        <SkipToContent />
         <ScrollToTop />
         <Providers>{children}</Providers>
       </body>

@@ -6,7 +6,7 @@ import { ISourceOptions, MoveDirection, OutMode } from "@tsparticles/engine";
 import { loadSlim } from "@tsparticles/slim";
 import { useTheme } from "next-themes";
 
-const ParticleBackground = () => {
+export default function ParticleBackground() {
   const [init, setInit] = useState(false);
   const { theme } = useTheme();
 
@@ -32,7 +32,7 @@ const ParticleBackground = () => {
           value: theme === "dark" ? "#ffffff" : "#000000",
         },
         shape: {
-          type: "square",
+          type: "circle",
           stroke: {
             width: 0,
             color: "#000000",
@@ -128,6 +128,4 @@ const ParticleBackground = () => {
   }
 
   return <></>;
-};
-
-export default ParticleBackground;
+}
