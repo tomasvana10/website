@@ -20,24 +20,30 @@ const config: Config = {
   daisyui: {
     themes: [
       {
-        dark: {
+        betterblack: {
           "color-scheme": "dark",
-          "primary": "#FF865B",
-          "secondary": "#FD6F9C",
-          "accent": "#B387FA",
-          "neutral": "oklch(26% 0.019 237.69)",
-          "neutral-content": "oklch(70% 0.019 237.69)",
-          "base-100": "oklch(22% 0.019 237.69)",
-          "base-200": "oklch(20% 0.019 237.69)",
-          "base-300": "oklch(18% 0.019 237.69)",
-          "base-content": "#9fb9d0",
-          "info": "#89e0eb",
-          "success": "#addfad",
-          "warning": "#f1c891",
-          "error": "#ffbbbd",
-          "--rounded-box": "3rem",
-          "--rounded-btn": "3rem",
-          "--rounded-badge": "3rem",
+          "primary": "#373737",
+          "secondary": "#373737",
+          "accent": "#373737",
+          "base-100": "#010102",
+          "base-200": "#141414",
+          "base-300": "#262626",
+          "base-content": "#d6d6d6",
+          "neutral": "#373737",
+          "info": "#0000ff",
+          "success": "#008000",
+          "warning": "#ffff00",
+          "error": "#ff0000",
+          "--rounded-box": "1rem", // border radius rounded-box utility class, used in card and other large boxes
+          "--rounded-btn": "0.5rem", // border radius rounded-btn utility class, used in buttons and similar element
+          "--rounded-badge": "1.9rem", // border radius rounded-badge utility class, used in badges and similar
+          "--animation-btn": "0.25s", // duration of animation when you click on button
+          "--animation-input": "0.2s", // duration of animation for inputs like checkbox, toggle, radio, etc
+          "--btn-focus-scale": "0.97", // scale transform of button when you focus on it
+          "--border-btn": "1px", // border width of buttons
+          "--tab-border": "1px", // border width of tabs
+          "--tab-radius": "0.5rem", // border radius of tabs
+          "--navbar-padding": "1rem",
         },
         light: {
           "color-scheme": "light",
