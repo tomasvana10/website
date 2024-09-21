@@ -9,5 +9,5 @@ export default function BasePage() {
     push("/home");
   }, [push]);
 
-  return <p></p>;
+  return <></>;
 }

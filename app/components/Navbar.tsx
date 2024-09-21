@@ -4,7 +4,7 @@ import Link from "next/link";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { DropdownIcon } from "./SVG";
 
-const Links = ["About", "Experience", "Projects", "Contact"];
+const links = ["About", "Projects", "Contact"]; // add experience after "About" when possible
 
 export default function Navbar() {
   const [scrollDirection, setScrollDirection] = useState("up");
@@ -78,7 +78,7 @@ function NavDropdown() {
 function NavLinks() {
   return (
     <>
-      {Links.map((link: string, index: number) => (
+      {links.map((link: string, index: number) => (
         <li key={index}>
           <Link href={`/home/#${link.toLowerCase()}`}>
             <span>{link}</span>

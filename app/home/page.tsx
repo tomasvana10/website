@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import About from "../components/About";
+import Projects from "../components/Projects";
 
-const sections = [About];
+const sections = [About, Projects]; // add Experience after About when possible
 
-const responseDelay = 150;
+const responseDelayInMS = 100;
 
 export default function HomePage() {
   const [visibility, setVisibility] = useState(Array(sections.length).fill(false));
@@ -22,7 +23,7 @@ export default function HomePage() {
                 newVisibility[index] = true;
                 return newVisibility;
               });
-            }, responseDelay);
+            }, responseDelayInMS);
 
             observer.unobserve(entry.target);
           }
@@ -45,7 +46,8 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-24 mt-24">
+    <div className="flex flex-col gap-24 mt-12 mb-24">
+      {/* note: mt is smaller due to navbar hiding making the space above the first section too large */}
       {sections.map((SectionComponent, index) => {
         return (
           <div

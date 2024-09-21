@@ -3,7 +3,6 @@ import "./globals.css";
 import { Providers } from "./providers";
 import ScrollToTop from "./components/ScrollToTop";
 import SkipToContent from "./components/SkipToContent";
-import MouseSpotlight from "./components/MouseSpotlight";
 
 export const metadata: Metadata = {
   title: "Tomas Vana - Website",
@@ -43,7 +42,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         />
       </head>
       <body>
-        <MouseSpotlight />
         <SkipToContent />
         <ScrollToTop />
         <Providers>{children}</Providers>

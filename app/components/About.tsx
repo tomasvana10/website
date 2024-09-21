@@ -1,5 +1,7 @@
 import Link from "next/link";
 import SectionHeader from "./SectionHeader";
+import { QuoteIcon } from "./SVG";
+import { CardWrapper } from "./Wrappers";
 
 const Technology = {
   familiar: [
@@ -10,6 +12,7 @@ const Technology = {
     { displayName: "GitHub", iconName: "GitHub", hasColouredVariant: false },
     { displayName: "HTML", iconName: "HTML5", hasColouredVariant: true },
     { displayName: "VSCode", iconName: "VSCode", hasColouredVariant: true },
+    { displayName: "PyPI", iconName: "PyPI", hasColouredVariant: true },
   ],
   learning: [
     { displayName: "TypeScript", iconName: "TypeScript", hasColouredVariant: true },
@@ -18,6 +21,7 @@ const Technology = {
     { displayName: "CSS", iconName: "CSS3", hasColouredVariant: true },
     { displayName: "TailwindCSS", iconName: "tailwindcss", hasColouredVariant: true },
     { displayName: "NodeJS", iconName: "nodejs", hasColouredVariant: true },
+    { displayName: "Vercel", iconName: "Vercel", hasColouredVariant: false },
   ],
   wantToLearn: [
     { displayName: "Rust", iconName: "Rust", hasColouredVariant: false },
@@ -25,51 +29,63 @@ const Technology = {
     { displayName: "C++", iconName: "CPlusPlus", hasColouredVariant: true },
     { displayName: "Java", iconName: "Java", hasColouredVariant: true },
     { displayName: "MySQL", iconName: "MySQL", hasColouredVariant: true },
-    { displayName: "PostgresQL", iconName: "PostgresQL", hasColouredVariant: true },
     { displayName: "Lua", iconName: "Lua", hasColouredVariant: true },
+    { displayName: "Unity", iconName: "Unity", hasColouredVariant: false },
   ],
 };
 
 export default function About() {
   return (
-    <div>
+    <>
       <SectionHeader name="About" number={1} />
-      <div className="card card-bordered backdrop-filter backdrop-blur-lg bg-opacity-30">
-        <div className="card-body gap-5">
-          <p>
-            Hello! My name is <span className="inline-block whitespace-pre font-bold">{" 🇦🇺 Tomas 🇨🇿 "}</span>{" "}
-            and I enjoy programming open source things ranging from niche tools all the way to websites and
-            games, using a variety of languages.
-          </p>
-          <p>
-            I first gained an interest for programming in 2023, when I began learning Python and the GUI
-            library Tkinter. Since then, I have expanded my knowledge of coding to various other technologies.
-          </p>
-          <p>
-            The first major project I completed was a{" "}
-            <Link className="text-blue-400" href="https://github.com/tomasvana10/xpuz">
-              procedural crossword generator
-            </Link>{" "}
-            which I designed with Python and Flask. It is complete with a full usage manual and code reference
-            on{" "}
-            <Link className="text-blue-400" href="https://xpuz.readthedocs.io/en/latest/">
-              ReadTheDocs
-            </Link>
-            . You should check it out!
-          </p>
-          <h2 className="text-lg text-black dark:text-white italic">Technologies I am...</h2>
-          <div className="join join-vertical w-full">
-            <TechnologyAccordion type="familiar" accordionLabel="Familiar with" />
-            <TechnologyAccordion type="learning" accordionLabel="Learning or have partial knowledge in" />
-            <TechnologyAccordion type="wantToLearn" accordionLabel="Aiming to learn in the future" />
-          </div>
-
-          <div className="card-actions justify-start mt-4">
-            <button className="btn btn-outline">Download My Resume</button>
+      <CardWrapper>
+        <p>
+          Hello! My name is <span className="inline-block whitespace-pre font-bold">{" 🇦🇺 Tomas 🇨🇿 "}</span>{" "}
+          and I enjoy coding open source things ranging from niche tools all the way to websites and games,
+          using a variety of programming languages.
+        </p>
+        <p>
+          I first gained an interest for programming in 2023, when I began learning Python and the GUI library
+          Tkinter. Since then, I have expanded my knowledge of coding to various other technologies.
+        </p>
+        <p>
+          The first major project I completed was a{" "}
+          <Link
+            id="firstFocusableContent"
+            className="text-blue-400"
+            href="https://github.com/tomasvana10/xpuz">
+            procedural crossword generator
+          </Link>{" "}
+          which I designed with Python and Flask. It is complete with a full usage manual and code reference
+          on{" "}
+          <Link className="text-blue-400" href="https://xpuz.readthedocs.io/en/latest/">
+            ReadTheDocs
+          </Link>
+          . You should check it out!
+        </p>
+        <div className="stats shadow">
+          <div className="stat">
+            <QuoteIcon className="h-10 w-10 fill-current" />
+            <div className="stat-title">My favourite quote</div>
+            <div className="stat-value text-lg whitespace-normal">
+              It is possible to believe that all the human mind has ever accomplished is but the dream before
+              the awakening.
+            </div>
+            <div className="stat-desc">― H.G. Wells</div>
           </div>
         </div>
-      </div>
-    </div>
+        <h2 className="text-lg text-black dark:text-white italic">Technologies I am...</h2>
+        <div className="join join-vertical w-full">
+          <TechnologyAccordion type="familiar" accordionLabel="Familiar with" />
+          <TechnologyAccordion type="learning" accordionLabel="Learning or have partial knowledge in" />
+          <TechnologyAccordion type="wantToLearn" accordionLabel="Aiming to learn in the future" />
+        </div>
+
+        <div className="card-actions justify-start mt-4">
+          <button className="btn btn-outline">View my resume</button>
+        </div>
+      </CardWrapper>
+    </>
   );
 }
 
@@ -82,12 +98,7 @@ function TechnologyAccordion({
 }) {
   return (
     <div className="collapse collapse-arrow join-item border-base-300 border">
-      <input
-        type="radio"
-        name="accordion-1"
-        {...(type === "familiar" ? { id: "firstFocusableContent" } : {})}
-        defaultChecked={type === "familiar"}
-      />
+      <input type="radio" name="accordion-1" defaultChecked={type === "familiar"} />
       <div className="collapse-title text-xl font-medium">{accordionLabel}</div>
       <div className="collapse-content max-h-40 overflow-auto">
         <Technologies type={type} />
