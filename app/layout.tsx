@@ -8,7 +8,18 @@ export const metadata: Metadata = {
   title: "Tomas Vana - Website",
   description: "My personal website, including things about me and my projects",
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/favicon/light.ico",
+        href: "/favicon/light.ico",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/favicon/dark.ico",
+        href: "/favicon/dark.ico",
+      },
+    ],
   },
   authors: [
     {
