@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GithubIcon } from "./SVG";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="footer bg-zinc-300 dark:bg-zinc-900 p-4 footer-center">
       <div className="flex flex-row align-text-top gap-x-10">
@@ -14,7 +15,11 @@ export default function Footer() {
               </Link>
             </span>
           </p>
-          <p>{new Date().getFullYear()} - Tomas Vana </p>
+          <p>
+            Copyright © {2024 !== currentYear ? "2024-" : ""}
+            {new Date().getFullYear()} Tomas Vana
+          </p>
+          <Version />
         </aside>
         <div className="grid grid-flow-col gap-4">
           <Link target="_blank" href="https://github.com/tomasvana10">
@@ -23,5 +28,19 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function Version() {
+  return (
+    <span>
+      Version{" "}
+      {(async () => {
+        "use server";
+        return await fetch(`https://api.github.com/repos/tomasvana10/website/tags`)
+          .then((res) => res.json())
+          .then((tags) => tags[0]?.name ?? "not found");
+      })()}
+    </span>
   );
 }
