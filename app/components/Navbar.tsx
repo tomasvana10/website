@@ -76,13 +76,23 @@ function NavDropdown() {
 }
 
 function NavLinks() {
+  const handleSmoothScroll = (e: React.MouseEvent, link: string) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(link);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       {links.map((link: string, index: number) => (
         <li key={index}>
-          <Link href={`/home/#${link.toLowerCase()}`}>
+          <a
+            href={`/home/#${link.toLowerCase()}`}
+            onClick={(e) => handleSmoothScroll(e, `#${link.toLowerCase()}`)}>
             <span>{link}</span>
-          </Link>
+          </a>
         </li>
       ))}
     </>
