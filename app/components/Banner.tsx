@@ -8,7 +8,7 @@ export default function Banner() {
       <ParallaxBanner
         layers={[
           {
-            image: "/hubble.jpg",
+            image: "/images/hubble.jpg",
             opacity: [1, 0],
             translateY: [-10, 20],
             shouldAlwaysCompleteAnimation: true,

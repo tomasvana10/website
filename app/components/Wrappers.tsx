@@ -1,6 +1,6 @@
 export function ContentWrapper({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <section className="mx-auto min-h-screen max-w-screen-xl px-6 md:px-12 lg:px-24 lg:py-0">
+    <section className="mx-auto max-w-screen-xl px-6 md:px-12 lg:px-24 lg:py-0">
       <div className="lg-flex lg:justify-between lg:gap-4">{children}</div>
     </section>
   );
