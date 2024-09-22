@@ -5,22 +5,23 @@ import { MoonIcon, SunIcon } from "./SVG";
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-    document.documentElement.classList.add(theme!);
-  }, [theme]);
+    const currentTheme = theme === "system" ? resolvedTheme : theme;
+    currentTheme && document.documentElement.classList.add(currentTheme!);
+  }, [theme, resolvedTheme]);
 
   if (!mounted) {
     return <span className="loading loading-spinner w-6 h-6 mr-4 pt-1 bg-current"></span>;
   }
 
   const toggleTheme = () => {
-    const oldTheme = theme;
-    const newTheme = theme === "dark" ? "light" : "dark";
+    const currentTheme = theme === "system" ? resolvedTheme : theme;
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    document.documentElement.classList.remove(oldTheme!);
+    document.documentElement.classList.remove(currentTheme!);
     document.documentElement.classList.add(newTheme);
   };
 
@@ -35,9 +36,9 @@ export default function ThemeSwitcher() {
       <label className="grid cursor-pointer place-items-center">
         <input
           type="checkbox"
-          value={theme}
+          value={theme === "system" ? resolvedTheme : theme}
           onKeyDown={handleThemeToggle}
-          checked={theme === "light"}
+          checked={resolvedTheme === "light"}
           onChange={handleThemeToggle}
           className="toggle theme-controller bg-base-content col-span-2 col-start-1 row-start-1"
         />
