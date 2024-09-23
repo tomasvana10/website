@@ -87,7 +87,7 @@ const featuredProjects = ["xpuz", "wordlemini"];
 
 export default function Projects() {
   return (
-    <>
+    <section>
       <SectionHeader name="Projects" number={2} />
       <CardWrapper>
         {featuredProjects
@@ -95,7 +95,7 @@ export default function Projects() {
           .map((projectData, index) => (
             <FeaturedProject projectData={projectData!} key={index} />
           ))}
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects
             .filter((project) => !featuredProjects.includes(project.name))
             .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -104,30 +104,35 @@ export default function Projects() {
             ))}
         </div>
       </CardWrapper>
-    </>
+    </section>
   );
 }
 
 function RegularProject({ projectData }: { projectData: (typeof projects)[number] }) {
-  return <h1>{projectData.name}</h1>;
+  return (
+    <div className="card-bordered gap-4 relative rounded-md">
+      <div className="absolute right-3 top-3">
+        <ProjectLinks srcCodeLink={projectData.srcCodeLink} checkItOutLink={projectData.checkItOutLink} />
+      </div>
+      <div className="card-body p-6">
+        <h1 className="text-xl">Project</h1>
+        <h1 className="text-2xl">{projectData.name}</h1>
+        <div className="card card-bordered mt-2">
+          <div className="card-body p-4">{projectData.description}</div>
+        </div>
+        <div className="flex flex-wrap mt-4 gap-1">
+          <ProjectBadges technologyBadges={projectData.technologyBadges} />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 function FeaturedProject({ projectData }: { projectData: (typeof projects)[number] }) {
   return (
-    <div className="card-bordered relative flex justify-center gap-4 p-6">
+    <div className="card-bordered relative flex justify-center gap-4 p-6 rounded-md">
       <div className="absolute top-3 left-3 min-[900px]:right-3 min-[900px]:left-auto z-[999]">
-        <div className="flex gap-2 ">
-          {projectData.srcCodeLink && (
-            <Link target="_blank" href={projectData.srcCodeLink}>
-              <GithubIcon className="h-6 w-6 fill-current scale-[1.15] transition-transform duration-175 hover:scale-125" />
-            </Link>
-          )}
-          {projectData.checkItOutLink && (
-            <Link target="_blank" href={projectData.checkItOutLink}>
-              <ExternalLinkIcon className="h-6 w-6 fill-current transition-transform duration-175 hover:scale-110" />
-            </Link>
-          )}
-        </div>
+        <ProjectLinks srcCodeLink={projectData.srcCodeLink} checkItOutLink={projectData.checkItOutLink} />
       </div>
       {projectData.hasPreviewImage && (
         <div className="flex align-middle">
@@ -151,14 +156,41 @@ function FeaturedProject({ projectData }: { projectData: (typeof projects)[numbe
             <div className="card-body p-4">{projectData.description}</div>
           </div>
           <div className="flex flex-wrap justify-center min-[900px]:justify-end mt-4 gap-1">
-            {projectData.technologyBadges.sort().map((technology, index) => (
-              <div key={index} className="badge badge-ghost">
-                {technology}
-              </div>
-            ))}
+            <ProjectBadges technologyBadges={projectData.technologyBadges} />
           </div>
         </div>
       </div>
     </div>
   );
+}
+
+function ProjectLinks({
+  srcCodeLink,
+  checkItOutLink,
+}: {
+  srcCodeLink: string | null;
+  checkItOutLink: string | null;
+}) {
+  return (
+    <div className="flex gap-2">
+      {srcCodeLink && (
+        <Link target="_blank" href={srcCodeLink}>
+          <GithubIcon className="h-6 w-6 fill-current scale-[1.15] transition-transform duration-175 hover:scale-125" />
+        </Link>
+      )}
+      {checkItOutLink && (
+        <Link target="_blank" href={checkItOutLink}>
+          <ExternalLinkIcon className="h-6 w-6 fill-current transition-transform duration-175 hover:scale-110" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
+function ProjectBadges({ technologyBadges }: { technologyBadges: string[] }) {
+  return technologyBadges.sort().map((technology, index) => (
+    <div key={index} className="badge badge-ghost">
+      {technology}
+    </div>
+  ));
 }

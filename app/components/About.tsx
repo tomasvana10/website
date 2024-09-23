@@ -36,7 +36,7 @@ const Technology = {
 
 export default function About() {
   return (
-    <>
+    <section>
       <SectionHeader name="About" number={1} />
       <CardWrapper>
         <p>
@@ -85,7 +85,7 @@ export default function About() {
           <button className="btn btn-outline">View my resume</button>
         </div>
       </CardWrapper>
-    </>
+    </section>
   );
 }
 
