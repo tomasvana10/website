@@ -5,8 +5,14 @@ import ScrollToTop from "./components/ScrollToTop";
 import SkipToContent from "./components/SkipToContent";
 
 export const metadata: Metadata = {
-  title: "Tomas Vana - Website",
-  description: "My personal website, including things about me and my projects",
+  title: {
+    default: "Tomas Vana",
+    template: "%s - Tomas Vana",
+  },
+  description: "My personal website, including things about me and my projects.",
+  twitter: {
+    card: "summary_large_image",
+  },
   icons: {
     icon: [
       {
@@ -35,6 +41,10 @@ export const metadata: Metadata = {
     "UI Framework",
     "Personal Website",
     "Resume",
+    "Developer Portfolio",
+    "Web Developer",
+    "Programmer",
+    "Python Developer",
     "Developer Website",
     "Developer",
   ],
