@@ -22,7 +22,7 @@ const projects: {
     description: "My personal website, which you are viewing right now.",
     technologyBadges: ["next.js", "TypeScript", "TailwindCSS", "Vercel"],
     srcCodeLink: "https://github.com/tomasvana10/website",
-    checkItOutLink: "https://tomasvana.vercel.app",
+    checkItOutLink: "https://tomasvana.com",
     hasPreviewImage: false,
     hasLightImage: false,
   },
