@@ -2,6 +2,7 @@
 import { useTheme } from "next-themes";
 import { KeyboardEvent, ChangeEvent, useState, useEffect } from "react";
 import { MoonIcon, SunIcon } from "./SVG";
+import Loading from "./Loading";
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -13,9 +14,7 @@ export default function ThemeSwitcher() {
     currentTheme && document.documentElement.classList.add(currentTheme!);
   }, [theme, resolvedTheme]);
 
-  if (!mounted) {
-    return <span className="loading loading-spinner w-6 h-6 mr-4 pt-1 bg-current"></span>;
-  }
+  if (!mounted) return <Loading />;
 
   const toggleTheme = () => {
     const currentTheme = theme === "system" ? resolvedTheme : theme;
@@ -26,9 +25,7 @@ export default function ThemeSwitcher() {
   };
 
   const handleThemeToggle = (event: KeyboardEvent<HTMLInputElement> | ChangeEvent<HTMLInputElement>) => {
-    if ((event as KeyboardEvent<HTMLInputElement>).key === "Enter" || event.type === "change") {
-      toggleTheme();
-    }
+    if ((event as KeyboardEvent<HTMLInputElement>).key === "Enter" || event.type === "change") toggleTheme();
   };
 
   return (

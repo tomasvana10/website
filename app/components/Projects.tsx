@@ -4,8 +4,19 @@ import { CardWrapper } from "./Wrappers";
 import { ExternalLinkIcon, GithubIcon } from "./SVG";
 import Link from "next/link";
 import "../SlantedText.css";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import Loading from "./Loading";
 
-const projects = [
+const projects: {
+  name: string;
+  description: string;
+  technologyBadges: string[];
+  srcCodeLink: null | string;
+  checkItOutLink: null | string;
+  hasPreviewImage: boolean;
+  hasLightImage: boolean;
+}[] = [
   {
     name: "website",
     description: "My personal website, which you are viewing right now.",
@@ -13,6 +24,7 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/website",
     checkItOutLink: "https://tomasvana.vercel.app",
     hasPreviewImage: false,
+    hasLightImage: false,
   },
   {
     name: "ausvote",
@@ -20,15 +32,8 @@ const projects = [
     technologyBadges: ["next.js", "TypeScript", "TailwindCSS", "Vercel", "MySQL", "Auth.js"],
     srcCodeLink: null,
     checkItOutLink: "https://elections.australiaemc.net",
-    hasPreviewImage: false,
-  },
-  {
-    name: "mmhack",
-    description: "A JSMacros script to provide an easier playing experience in a Hypixel minigame.",
-    technologyBadges: ["JavaScript", "JSMacros"],
-    srcCodeLink: "https://github.com/tomasvana10/mmhack",
-    checkItOutLink: null,
-    hasPreviewImage: false,
+    hasPreviewImage: true,
+    hasLightImage: true,
   },
   {
     name: "wordlemini",
@@ -37,6 +42,7 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/wordlemini",
     checkItOutLink: null,
     hasPreviewImage: true,
+    hasLightImage: false,
   },
   {
     name: "xpuz",
@@ -56,6 +62,7 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/xpuz",
     checkItOutLink: "https://tomasvana10.github.io",
     hasPreviewImage: true,
+    hasLightImage: false,
   },
   {
     name: "sorting-vis",
@@ -64,6 +71,7 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/sorting-vis",
     checkItOutLink: null,
     hasPreviewImage: false,
+    hasLightImage: false,
   },
   {
     name: "commits2pdf",
@@ -72,6 +80,7 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/commits2pdf",
     checkItOutLink: null,
     hasPreviewImage: false,
+    hasLightImage: false,
   },
   {
     name: "seriescalculator-sdd",
@@ -80,10 +89,11 @@ const projects = [
     srcCodeLink: "https://github.com/tomasvana10/seriescalculator-sdd",
     checkItOutLink: null,
     hasPreviewImage: false,
+    hasLightImage: false,
   },
 ];
 
-const featuredProjects = ["xpuz", "wordlemini"];
+const featuredProjects = ["xpuz", "ausvote"];
 
 export default function Projects() {
   return (
@@ -129,6 +139,12 @@ function RegularProject({ projectData }: { projectData: (typeof projects)[number
 }
 
 function FeaturedProject({ projectData }: { projectData: (typeof projects)[number] }) {
+  const [mounted, setMounted] = useState(false);
+  const { theme } = useTheme();
+
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return <Loading />;
+
   return (
     <div className="card-bordered relative flex justify-center gap-4 p-6 rounded-md">
       <div className="absolute top-3 left-3 min-[900px]:right-3 min-[900px]:left-auto z-[999]">
@@ -138,7 +154,11 @@ function FeaturedProject({ projectData }: { projectData: (typeof projects)[numbe
         <div className="flex align-middle">
           <Image
             className="absolute inset-0 w-full h-full object-cover filter min-[900px]:relative min-[900px]:flex min-[900px]:blur-0 min-[900px]:filter-none"
-            src={`/images/${projectData.name}-preview.png`}
+            src={
+              theme === "dark" || !projectData.hasLightImage
+                ? `/images/${projectData.name}-preview.png`
+                : `/images/${projectData.name}-preview-light.png`
+            }
             alt={`preview image showcasing ${projectData.name}`}
             width="1000"
             height="1000"
