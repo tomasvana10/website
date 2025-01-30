@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { DropdownIcon } from "./SVG";
+import { Menu } from "lucide-react";
 
 const links = ["About", "Projects", "Contact"]; // add experience after "About" when possible
 
@@ -65,7 +65,7 @@ function NavDropdown() {
   return (
     <div className="dropdown dropdown-hover">
       <div tabIndex={0} role="button" className="btn m-1">
-        <DropdownIcon className="fill-current w-6 h-6" />
+        <Menu className="fill-current w-6 h-6" />
       </div>
       <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
         <NavLinks />

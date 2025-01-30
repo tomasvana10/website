@@ -1,12 +1,13 @@
 import Image from "next/image";
 import SectionHeader from "./SectionHeader";
 import { CardWrapper } from "./Wrappers";
-import { ExternalLinkIcon, GithubIcon } from "./SVG";
+import { GithubIcon } from "./SVG";
 import Link from "next/link";
 import "../SlantedText.css";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import Loading from "./Loading";
+import { ExternalLink } from "lucide-react";
 
 const projects: {
   name: string;
@@ -29,7 +30,7 @@ const projects: {
   {
     name: "ausvote",
     description: "A voting website for the geopolitical Minecraft server EarthMC.",
-    technologyBadges: ["next.js", "TypeScript", "TailwindCSS", "Vercel", "MySQL", "Auth.js"],
+    technologyBadges: ["next.js", "TypeScript", "TailwindCSS", "Vercel", "PostgreSQL", "NextAuth.js"],
     srcCodeLink: null,
     checkItOutLink: "https://elections.australiaemc.net",
     hasPreviewImage: true,
@@ -91,6 +92,15 @@ const projects: {
     hasPreviewImage: false,
     hasLightImage: false,
   },
+  {
+    name: "mastermind",
+    description: "The code-breaking board game in HTML.",
+    technologyBadges: ["HTML", "JavaScript", "CSS", "Jest", "Puppeteer"],
+    srcCodeLink: "https://github.com/tomasvana10/mastermind-html",
+    checkItOutLink: "https://tomasvana10.github.io/mastermind-html/",
+    hasPreviewImage: false,
+    hasLightImage: false,
+  },
 ];
 
 const featuredProjects = ["xpuz", "ausvote"];
@@ -146,7 +156,7 @@ function FeaturedProject({ projectData }: { projectData: (typeof projects)[numbe
   if (!mounted) return <Loading />;
 
   return (
-    <div className="card-bordered relative flex justify-center gap-4 p-6 rounded-md">
+    <div className="card-bordered relative flex justify-center gap-4 p-6 rounded-md max-h-[350px]">
       <div className="absolute top-3 left-3 min-[900px]:right-3 min-[900px]:left-auto z-[999]">
         <ProjectLinks srcCodeLink={projectData.srcCodeLink} checkItOutLink={projectData.checkItOutLink} />
       </div>
@@ -156,12 +166,13 @@ function FeaturedProject({ projectData }: { projectData: (typeof projects)[numbe
             className="absolute inset-0 w-full h-full object-cover filter min-[900px]:relative min-[900px]:flex min-[900px]:blur-0 min-[900px]:filter-none"
             src={
               theme === "dark" || !projectData.hasLightImage
-                ? `/images/${projectData.name}-preview.png`
-                : `/images/${projectData.name}-preview-light.png`
+                ? `/images/previews/${projectData.name}-preview.png`
+                : `/images/previews/${projectData.name}-preview-light.png`
             }
             alt={`preview image showcasing ${projectData.name}`}
             width="1000"
             height="1000"
+            quality={100}
           />
           <div className="absolute inset-0 bg-base-100 dark:bg-black opacity-80 dark:opacity-75 min-[900px]:opacity-0 min-[900px]:dark:opacity-10" />
         </div>
@@ -200,7 +211,7 @@ function ProjectLinks({
       )}
       {checkItOutLink && (
         <Link target="_blank" href={checkItOutLink}>
-          <ExternalLinkIcon className="h-6 w-6 fill-current transition-transform duration-175 hover:scale-110" />
+          <ExternalLink className="h-6 w-6 transition-transform duration-175 hover:scale-110" />
         </Link>
       )}
     </div>

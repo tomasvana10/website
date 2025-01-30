@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SectionHeader from "./SectionHeader";
-import { QuoteIcon } from "./SVG";
 import { CardWrapper } from "./Wrappers";
+import { Quote } from "lucide-react";
 
 const Technology = {
   familiar: [
@@ -65,7 +65,7 @@ export default function About() {
         </p>
         <div className="stats shadow">
           <div className="stat">
-            <QuoteIcon className="h-10 w-10 fill-current" />
+            <Quote className="fill-current size-10" />
             <div className="stat-title">My favourite quote</div>
             <div className="stat-value text-lg whitespace-normal">
               It is possible to believe that all the human mind has ever accomplished is but the dream before
@@ -80,10 +80,11 @@ export default function About() {
           <TechnologyAccordion type="learning" accordionLabel="Learning or have partial knowledge in" />
           <TechnologyAccordion type="wantToLearn" accordionLabel="Aiming to learn in the future" />
         </div>
-
+        {/*
         <div className="card-actions justify-start mt-4">
           <button className="btn btn-outline">View my resume</button>
         </div>
+         */}
       </CardWrapper>
     </section>
   );
