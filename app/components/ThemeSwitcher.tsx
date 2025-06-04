@@ -10,9 +10,13 @@ export default function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true);
+    if (!localStorage.getItem("theme") && resolvedTheme) {
+      localStorage.setItem("theme", resolvedTheme);
+      setTheme(resolvedTheme);
+    }
     const currentTheme = theme === "system" ? resolvedTheme : theme;
     currentTheme && document.documentElement.classList.add(currentTheme!);
-  }, [theme, resolvedTheme]);
+  }, [theme, resolvedTheme, setTheme]);
 
   if (!mounted) return <Loading />;
 
