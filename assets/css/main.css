@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: "amulya";
   src: url("/fonts/Amulya-Variable.ttf") format("truetype");
