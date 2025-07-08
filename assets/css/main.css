@@ -34,14 +34,6 @@
   font-family: synonym, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 h1,
 h2,
 h3,
@@ -50,4 +42,18 @@ h5,
 h6 {
   font-family: "amulya";
   font-weight: bold;
+}
+
+@theme {
+  --color-background: #e5e5e5;
+  --color-foreground: #d6d3d1;
+  --color-primary-border: #cecdcd;
+  --color-hover-border: #448cefb8;
+}
+
+.dark {
+  --color-background: #111111;
+  --color-foreground: #171717;
+  --color-primary-border: #383838;
+  --color-hover-border: #5b9cf7b8;
 }
